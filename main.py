@@ -1,55 +1,49 @@
-'''
+from addressBook import AddressBook
+from record import Record
 
-У користувача буде адресна книга або книга контактів. Ця книга контактів містить записи. Кожен запис містить деякий набір полів.
+if __name__ == "__main__":
 
-Таким чином ми описали сутності (класи), які необхідно реалізувати. Далі розглянемо вимоги до цих класів та встановимо їх взаємозв'язок, правила, за якими вони будуть взаємодіяти.
+# Створення нової адресної книги
+    book = AddressBook()
+    print(book)
 
-Користувач взаємодіє з книгою контактів, додаючи, видаляючи та редагуючи записи. Також користувач повинен мати можливість шукати в книзі контактів записи за одним або кількома критеріями (полями).
+    # Створення запису для John
+    john_record = Record("John")
+    print(john_record)
 
-Про поля також можна сказати, що вони можуть бути обов'язковими (ім'я) та необов'язковими (телефон або email наприклад). Також записи можуть містити декілька полів одного типу (декілька телефонів наприклад). Користувач повинен мати можливість додавати/видаляти/редагувати поля у будь-якому записі.
+    john_record.add_phone("1234567890")
+    print(john_record)
 
+    john_record.add_phone("5555555555")
+    print(john_record)
 
+    # Додавання запису John до адресної книги
+    book.add_record(john_record)
+    print(book)
 
+    # Створення та додавання нового запису для Jane
+    jane_record = Record("Jane")
+    print(jane_record)
 
-'''
+    jane_record.add_phone("9876543210")
+    print(jane_record)
 
-'''
-- книга контактів: _додавати, _видаляти, _редагувати записи, _шукати
+    book.add_record(jane_record)
+    print('book:', book)
 
-  - записи
+    # Виведення всіх записів у книзі
+    for name, record in book.data.items():
+        print(record)
 
-    - набір полів: _імʼя(обов), _телефон або мейл(необов) _додавати, _видаляти, _редагувати поля
+    # Знаходження та редагування телефону для John
+    john = book.find("John")
+    john.edit_phone("1234567890", "1112223333")
 
-'''
+    print(john)  # Виведення: Contact name: John, phones: 1112223333; 5555555555
 
+    # Пошук конкретного телефону у записі John
+    found_phone = john.find_phone("5555555555")
+    print(f"{john.name}: {found_phone}")  # Виведення: John: 5555555555
 
-from collections import UserDict
-
-class Field:
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return str(self.value)
-
-class Name(Field):
-    # реалізація класу
-		pass
-
-class Phone(Field):
-    # реалізація класу
-		pass
-
-class Record:
-    def __init__(self, name):
-        self.name = Name(name)
-        self.phones = []
-
-    # реалізація класу
-
-    def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
-
-class AddressBook(UserDict):
-    # реалізація класу
-		pass
+    # Видалення запису Jane
+    book.delete("Jane")
