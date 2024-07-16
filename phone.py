@@ -6,7 +6,10 @@ class Phone(Field):
         self.value = self.validate_phone(phone)
 
     def validate_phone(self, phone):
-        if phone.isdigit() and len(phone) != 10:
-            raise ValueError("Phone number must be a 10 digit number")
+        if not phone.isdigit():
+            raise ValueError("Phone number must contain only numbers")
+        
+        if len(phone) != 10:
+            raise ValueError("Phone number must contain 10 digits")
 
         return phone

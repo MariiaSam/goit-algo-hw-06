@@ -5,7 +5,7 @@ class AddressBook(UserDict):
 
     def add_record(self, record: Record):
         if record.name.value in self.data:
-            print(f"Record with name {record.name.value} already exists")
+            raise KeyError(f"Record with name {record.name.value} already exists")
         else:
             self.data[record.name.value] = record
 
@@ -14,7 +14,7 @@ class AddressBook(UserDict):
 
     def delete(self, name):
         if name not in self.data:
-            print(f"Record with name {name} not found")
+             raise KeyError(f"Record with name {name} not found")
         else:
             del self.data[name]
 

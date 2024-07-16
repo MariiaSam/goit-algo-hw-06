@@ -12,18 +12,16 @@ class Record:
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
-            
-    def remove_phone(self, phone):
-        self.phones = [p for p in self.phones if str(p) != phone]
 
+    def remove_phone(self, phone):
+        self.phones = [p for p in self.phones if p.value != phone]
 
     def edit_phone(self, old_phone, new_phone):
-        for p in self.phones:
-            if str(p) == old_phone:
-                p.value = new_phone
-                break
+        self.remove_phone(old_phone)
+        self.add_phone(new_phone)
 
     def find_phone(self, phone):
         for p in self.phones:
-            if str(p) == phone:
-                return p
+            if p.value == phone:
+                return p.value
+            raise ValueError("Phone number not found!")
