@@ -21,7 +21,6 @@ class Record:
         self.add_phone(new_phone)
 
     def find_phone(self, phone):
-        for p in self.phones:
-            if p.value == phone:
-                return p.value
-            raise ValueError("Phone number not found!")
+         for p in self.phones:
+            if str(p) == phone:
+                return p
