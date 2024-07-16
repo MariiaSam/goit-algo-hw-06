@@ -32,7 +32,7 @@ print('8', book) # Contact name: John, phones: 1234567890; 5555555555 Contact na
 # Знаходження та редагування телефону для John
 john = book.find("John")
 print('9', john) # Contact name: John, phones: 1234567890; 5555555555
-john.edit_phone("1234567890", "111222333")
+john.edit_phone("1234567890", "1112223333")
 print('10', john)  # Contact name: John, phones: 1112223333; 5555555555
 
 # Пошук конкретного телефону у записі John
