@@ -16,11 +16,6 @@ class Record:
     def remove_phone(self, phone):
         self.phones = [p for p in self.phones if p.value != phone]
 
-# old uncorrect
-
-    # def edit_phone(self, old_phone, new_phone):
-    #     self.remove_phone(old_phone)
-    #     self.add_phone(new_phone)
 
     def edit_phone(self, old_phone, new_phone):
         try:
@@ -34,5 +29,5 @@ class Record:
 
     def find_phone(self, phone):
         for p in self.phones:
-             if str(p) == phone:
+             if p.value == phone:
                 return p
